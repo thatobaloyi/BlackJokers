@@ -1,4 +1,4 @@
-# Black Jack Software Development Program
+# BlackJack Game Software Development Program
 
 **Contributors:**
 - Thato Baloyi
