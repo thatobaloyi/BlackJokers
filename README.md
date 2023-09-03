@@ -1,20 +1,33 @@
 # Black Jack Software Development Program
 
-**Contributors:** Thato Baloyi, Nokubonga Sithole, Esihle Nogoqa, Milani Tetani  
+**Contributors:**
+- Thato Baloyi
+- Nokubonga Sithole
+- Esihle Nogoqa
+- Milani Tetani
+
 **Mentor:** Sinenjabulo Gogwana
 
 ## Project Description
 This is a Java-based Blackjack game with a graphical user interface (GUI). It utilizes Object-Oriented Programming (OOP) concepts, ArrayLists, Stacks, and custom classes (Hand, Deck, BlackJack, and Card) with custom methods.
 
 ## Getting Started
-To play the game, follow these steps:
+To play the game using the compiled `.class` files, follow these steps:
 
 1. Clone the project repository from https://github.com/thatobaloyi/BlackJokers.
-2. Ensure you have Java Development Kit (JDK) 8 or higher installed on your system.
-3. Open your terminal or command prompt and navigate to the project directory.
 
-## Running the Game
-Compile and run the program by executing the appropriate commands.
+2. **Navigate to the `bin` Directory**:
+   - Open your terminal or command prompt.
+   - Navigate to the `bin` directory within the project directory:
+     ```bash
+     cd path/to/your/project/bin
+     ```
+
+3. **Run the Game**:
+   - Execute the following command to run the game:
+     ```bash
+     java App
+     ```
 
 ## Project Structure
 The project is organized as a Java project and follows the standard Java project structure:
