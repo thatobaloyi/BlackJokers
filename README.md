@@ -9,7 +9,7 @@ This is a Java-based Blackjack game with a graphical user interface (GUI). It ut
 ## Getting Started
 To play the game, follow these steps:
 
-1. Clone the project repository from [GitHub Repo URL].
+1. Clone the project repository from https://github.com/thatobaloyi/BlackJokers.
 2. Ensure you have Java Development Kit (JDK) 8 or higher installed on your system.
 3. Open your terminal or command prompt and navigate to the project directory.
 
