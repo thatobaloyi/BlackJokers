@@ -1,53 +1,47 @@
-Group name: **Black Jokers**
+# Black Jack Software Development Program
 
-# Group members: 
-1. Thato Baloyi
-2. Nokubonga Sithole
-3. Esihle Nogoqa
-4. Milani Tetani
+**Contributors:** Thato Baloyi, Nokubonga Sithole, Esihle Nogoqa, Milani Tetani  
+**Mentor:** Sinenjabulo Gogwana
 
-Group mentor: **Sinenjabulo Gogwana**
+## Project Description
+This is a Java-based Blackjack game with a graphical user interface (GUI). It utilizes Object-Oriented Programming (OOP) concepts, ArrayLists, Stacks, and custom classes (Hand, Deck, BlackJack, and Card) with custom methods.
 
-# Project title: Black Jack Software Development Program
-
-Project page: https://github.com/thatobaloyi/BlackJokers
-
-# Instructions for use (allowable actions):
-Our "Black Jack Software Development Program" is a Java-based Blackjack game with a graphical user interface (GUI) that heavily utilizes Object-Oriented Programming (OOP) concepts, ArrayLists, Stacks, and custom classes (Hand, Deck, BlackJack, Card) with custom methods. To run and interact with the program, follow these instructions:
+## Getting Started
+To play the game, follow these steps:
 
 1. Clone the project repository from [GitHub Repo URL].
 2. Ensure you have Java Development Kit (JDK) 8 or higher installed on your system.
 3. Open your terminal or command prompt and navigate to the project directory.
 
-**To Run the Program:**
-4. Compile and run the program by executing the following commands:
+## Running the Game
+Compile and run the program by executing the appropriate commands.
 
-   ```bash
-   javac PlayGame.java
-   java PlayGame
-   ```
+## Project Structure
+The project is organized as a Java project and follows the standard Java project structure:
 
-**Game Interaction:**
-5. The graphical user interface will appear, representing the Blackjack table.
-6. Click on the graphical buttons to make choices during the game:
-   - Click "Hit" to take another card.
-   - Click "Stand" to end your turn.
-   - Click "Double Down" to double your bet and draw one more card.
-   - Click "Quit" to exit the game.
+- `src/` contains the Java source code files.
+- `bin/` or `out/` (depending on your IDE) contains compiled class files.
+- `lib/` (if applicable) contains external libraries used in the project.
 
-**Game Rules:**
-7. The program will enforce the rules of Blackjack, including card values and win/lose conditions.
-8. Your goal is to beat the dealer's hand without going over 21.
+## Game Interaction
+- The GUI represents the Blackjack table.
+- Click "Hit" to take another card.
+- Click "Stand" to end your turn.
+- Click "Double Down" to double your bet and draw one more card.
+- Click "Quit" to exit the game.
 
-**Assumptions:**
-- Users are assumed to be familiar with the rules of Blackjack.
-- The program does not support real-money betting and is for entertainment purposes only.
+## Game Rules
+- The program enforces Blackjack rules, including card values and win/lose conditions.
+- The goal is to beat the dealer's hand without going over 21.
 
-**Limitations:**
-- The program is limited to a single-player experience; it does not support multiplayer.
-- It does not provide statistics or tracking of previous games.
-- Advanced Blackjack strategies or card counting are not implemented.
-- The program does not include networking features for online play.
-- The GUI is relatively simple, with basic button interactions.
-- The game is built using OOP principles, utilizing ArrayLists, Stacks, and custom classes (Hand, Deck, BlackJack, Card) with custom methods.
-- The user needs to compile and run the `PlayGame.java` file to play the game.
+## Assumptions
+- Users are assumed to be familiar with Blackjack rules.
+- The game does not support real-money betting; it's for entertainment purposes only.
+
+## Limitations
+- Single-player experience; no multiplayer support.
+- No statistics or game tracking.
+- No advanced strategies or card counting.
+- No online play features.
+- Basic GUI with button interactions.
+- OOP principles and custom classes used.
