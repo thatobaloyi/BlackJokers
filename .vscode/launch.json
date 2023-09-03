@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "BlackJack_cba31e8b",
+            "classPaths": [
+                "${workspaceFolder}/bin"
+            ]
+        }
+    ]
+}
