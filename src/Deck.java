@@ -1,9 +1,11 @@
-import java.util.*;
+import java.util.Collections;
+import java.util.Random;
+import java.util.Stack;
 
 public class Deck {
     Stack<Card> deck = new Stack<>(); // class Stack, accessible to all the methods in the class
-    
-    Deck(){
+
+    Deck() {
         buildDeck(deck);
         shuffleDeck(deck);
     }
@@ -31,11 +33,11 @@ public class Deck {
         // System.out.println(deck); // prints the shuffled deck.
     }
 
-    public Stack<Card> getDeck(){
-        return this.deck;
-    }
+    // public Stack<Card> getDeck(){
+    // return this.deck;
+    // }
 
-    public Card getCard(){
-        return deck.pop();
-    }
+    // public Card getCard(){
+    // return deck.pop();
+    // }
 }

@@ -1,22 +1,22 @@
-public class BlackJack {
+public class BlackJack extends Deck {
     BlackJack() {
         startGame(); // calls the start game method
     }
 
     public void startGame() {
-        Deck deck = new Deck();
+        // Deck deck = new Deck();
         Card card;
 
         // Dealer Hand
         Hand dealerHand = new Hand();
 
         // hidden card.
-        Card hiddenCard;
-        hiddenCard = deck.getCard(); // gets the hidden card for the dealer
+        final Card hiddenCard;
+        hiddenCard = this.deck.pop(); // gets the hidden card for the dealer
         dealerHand.updateSum(hiddenCard); // updates the sum of the dealer's cards
 
         // Card on hand.
-        card = deck.getCard();
+        card = this.deck.pop();
         dealerHand.updateSum(card); // updates the sum of the dealer's cards
         dealerHand.addCard(card); // adds the card to the dealer's hand
         System.out.println("Dealer Hand: " + dealerHand.showHand());
@@ -25,7 +25,7 @@ public class BlackJack {
         // Player Hand.
         Hand playerHand = new Hand();
         for (int i = 0; i < 2; i++) {
-            card = deck.getCard();
+            card = this.deck.pop();
             playerHand.updateSum(card);
             playerHand.addCard(card);
         }
