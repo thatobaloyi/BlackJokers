@@ -8,7 +8,7 @@ public class Card {
     }
 
     public String toString() {
-        return value + sign;
+        return value + "-" + sign;
     }
 
     public int getValue() { // gets the value of the card so we can be able to sum up the cards
@@ -23,6 +23,9 @@ public class Card {
 
     public boolean cardIsAce() {
         return value.equals("A"); // return true if value == A else false.
-    }
+    }   
 
+    public String path(){
+        return "./cards/" + toString() + ".png";
+    }
 }
