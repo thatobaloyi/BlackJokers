@@ -11,7 +11,7 @@ public class Deck {
     }
 
     public static void buildDeck(Stack<Card> deck) {
-        String[] signs = { "S", "H", "C", "D" };
+        String[] signs = { "spades", "hearts", "clubs", "diamonds" };
         String[] values = { "2", "3", "4", "5", "6", "7", "8", "9", "A", "J", "Q", "K" };
         for (int i = 0; i < signs.length; i++) {
             for (int j = 0; j < values.length; j++) {

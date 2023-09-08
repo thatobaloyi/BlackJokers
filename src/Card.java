@@ -8,7 +8,7 @@ public class Card {
     }
 
     public String toString() {
-        return value + "-" + sign;
+        return sign + "_" + value;
     }
 
     public int getValue() { // gets the value of the card so we can be able to sum up the cards
