@@ -33,11 +33,12 @@ public class Deck {
         // System.out.println(deck); // prints the shuffled deck.
     }
 
-    // public Stack<Card> getDeck(){
-    // return this.deck;
-    // }
+    public Stack<Card> getDeck(){
+        return this.deck;
+    }
 
-    // public Card getCard(){
-    // return deck.pop();
-    // }
+    public Card getCard(){
+        return deck.pop();
+    }
+
 }

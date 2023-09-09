@@ -24,4 +24,10 @@ public class Hand {
     public void updateSum(Card card) {
         this.sum += card.getValue(); // updates the sum of the cards in the arraylist when the card's are added
     }
+
+    public void clear(){
+        this.sum = 0;
+        this.aceCount = 0;
+        hand.clear();
+    }
 }

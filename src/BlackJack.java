@@ -1,88 +1,37 @@
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.Stack;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
-public class BlackJack extends Deck {
-    JFrame frame = new JFrame();
-    JPanel panel;
+public class BlackJack extends JFrame implements ActionListener {
+    Deck deck;
     Hand dealerHand = new Hand();
     Hand playerHand = new Hand();
     JButton hit = new JButton("HIT");
     JButton stand = new JButton("STAND");
     JButton help = new JButton("HELP");
     JButton info = new JButton("INFO");
+    JButton reset = new JButton("RESET");
     Card hiddenCard;
+    GamePanel panel;
 
     BlackJack() {
         startGame(); // calls the start game method
+        gameFrameSetup();
         cardDraw();
-        Stack<Card> deck = this.deck;
-        int cardwidth = 121;
-        int cardheight = 170;
-        panel = new JPanel() {
-            @Override
-            public void paintComponent(Graphics g) {
-                hit.setFocusable(false);
-                stand.setFocusable(false);
-                hit.setBounds(310, 600, 80, 25);
-                stand.setBounds(410, 600, 80, 25);
-                hit.setBorderPainted(false);
-                stand.setBorderPainted(false);
-                hit.setBackground(Color.WHITE);
-                stand.setBackground(Color.WHITE);
 
-                super.paintComponent(g);
-                Image backgroundImage = new ImageIcon(
-                        getClass().getResource("./background/eyestetix-studio-m0EzHtexapU-unsplash.jpg")).getImage();
-                g.drawImage(backgroundImage, 0, 0, 1280, 1000, null);
-                Image hiddenImage;
-                if ((stand.isEnabled())) {
-                    hiddenImage = new ImageIcon(getClass().getResource("./cards/back_dark.png")).getImage();
-                } else {
-                    hiddenImage = new ImageIcon(getClass().getResource(hiddenCard.path())).getImage();
-                }
-                g.drawImage(hiddenImage, 5, 25, cardwidth, cardheight, null);
-                for (int i = 0; i < dealerHand.hand.size(); i++) {
-                    Image card = new ImageIcon(getClass().getResource(dealerHand.hand.get(i).path())).getImage();
-                    g.drawImage(card, cardwidth + 10 + (cardwidth + 5) * i, 25, cardwidth, cardheight, null);
-                }
-
-                for (int i = 0; i < playerHand.hand.size(); i++) {
-                    Image card = new ImageIcon(getClass().getResource(playerHand.hand.get(i).path())).getImage();
-                    g.drawImage(card, 20 + (cardwidth + 5) * i, 400, cardwidth, cardheight, null);
-                }
-
-            }
-        };
-
-        panel.setSize(800, 700);
-        panel.setBackground(Color.green);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 700);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-        frame.setVisible(true);
-        frame.add(panel);
-        panel.add(hit);
-        panel.add(stand);
-        panel.add(help);
-        panel.add(info);
+        reset.addActionListener(this);
 
         hit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Card card = deck.pop();
+                Card card = deck.getCard();
                 playerHand.updateSum(card);
                 playerHand.addCard(card);
                 cardDraw();
@@ -94,7 +43,7 @@ public class BlackJack extends Deck {
             public void actionPerformed(ActionEvent e) {
                 stand.setEnabled(false);
                 hit.setEnabled(false);
-                Card card = deck.pop();
+                Card card = deck.getCard();
                 while (dealerHand.sum < 17) {
                     dealerHand.updateSum(card);
                     dealerHand.addCard(card);
@@ -127,19 +76,21 @@ public class BlackJack extends Deck {
                         "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
             }
         });
+
     }
 
     public void startGame() {
-        // Deck deck = new Deck();
-        Card card;
+        deck = new Deck();
+        this.hiddenCard = deck.getCard();
+        this.dealerHand.clear();
+        this.playerHand.clear();
 
-        // hidden card.
-        hiddenCard = this.deck.pop(); // gets the hidden card for the dealer
+        Card card;
         System.out.println(hiddenCard.toString());
         dealerHand.updateSum(hiddenCard); // updates the sum of the dealer's cards
 
         // Card on hand.
-        card = this.deck.pop();
+        card = deck.getCard();
         dealerHand.updateSum(card); // updates the sum of the dealer's cards
         dealerHand.addCard(card); // adds the card to the dealer's hand
         System.out.println("Dealer Hand: " + dealerHand.showHand());
@@ -147,7 +98,7 @@ public class BlackJack extends Deck {
 
         // Player Hand.
         for (int i = 0; i < 2; i++) {
-            card = this.deck.pop();
+            card = deck.getCard();
             playerHand.updateSum(card);
             playerHand.addCard(card);
         }
@@ -155,7 +106,6 @@ public class BlackJack extends Deck {
         System.out.println("Player Sum: " + playerHand.getSum());
 
     }
-    
 
     public void cardDraw() {
         try {
@@ -168,6 +118,34 @@ public class BlackJack extends Deck {
             System.exit(1);
         }
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == reset) {
+            this.remove(panel);
+            startGame();
+            gameFrameSetup();
+            SwingUtilities.updateComponentTreeUI(this);
+
+        }
+    }
+
+    public void gameFrameSetup() { // sets up the frame.
+        panel = new GamePanel(dealerHand, playerHand, hit, stand, info, help, hiddenCard);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(800, 700);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.setVisible(true);
+        this.add(panel);
+        panel.add(hit);
+        hit.setEnabled(true);
+        stand.setEnabled(true);
+        panel.add(reset);
+        panel.add(stand);
+        panel.add(help);
+        panel.add(info);
     }
 
 }
