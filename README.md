@@ -42,7 +42,7 @@ The project is organized as a Java project and follows the standard Java project
 - Click "Stand" to end your turn.
 - Click "Double Down" to double your bet and draw one more card.
 - Click "Quit" to exit the game.
-
+- Nokubonga
 ## Game Rules
 - The program enforces Blackjack rules, including card values and win/lose conditions.
 - The goal is to beat the dealer's hand without going over 21.
