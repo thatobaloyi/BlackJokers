@@ -25,7 +25,6 @@ public class BlackJack extends JFrame implements ActionListener {
     BlackJack() {
         startGame(); // calls the start game method
         gameFrameSetup();
-        cardDraw();
 
         reset.addActionListener(this);
 
@@ -41,6 +40,7 @@ public class BlackJack extends JFrame implements ActionListener {
 
         stand.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                dealerHand.updateSum(hiddenCard);
                 stand.setEnabled(false);
                 hit.setEnabled(false);
                 Card card = deck.getCard();
@@ -80,14 +80,14 @@ public class BlackJack extends JFrame implements ActionListener {
     }
 
     public void startGame() {
+        cardDraw();
         deck = new Deck();
         this.hiddenCard = deck.getCard();
         this.dealerHand.clear();
         this.playerHand.clear();
 
         Card card;
-        System.out.println(hiddenCard.toString());
-        dealerHand.updateSum(hiddenCard); // updates the sum of the dealer's cards
+
 
         // Card on hand.
         card = deck.getCard();
@@ -132,7 +132,7 @@ public class BlackJack extends JFrame implements ActionListener {
     }
 
     public void gameFrameSetup() { // sets up the frame.
-        panel = new GamePanel(dealerHand, playerHand, hit, stand, info, help, hiddenCard);
+        panel = new GamePanel(dealerHand, playerHand, hit, stand, info, help, hiddenCard, reset);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(800, 700);
         this.setLocationRelativeTo(null);

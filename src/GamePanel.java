@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -16,12 +17,14 @@ class GamePanel extends JPanel{
     JButton stand;
     JButton help;
     JButton info;
+    JButton reset;
     Card hiddenCard;
     
-    GamePanel(Hand dealerHand, Hand playerhHand, JButton hit, JButton stand,JButton info, JButton help,  Card hiddencard){
+    GamePanel(Hand dealerHand, Hand playerhHand, JButton hit, JButton stand,JButton info, JButton help,  Card hiddencard, JButton reset){
             this.dealerHand = dealerHand;
             this.playerHand = playerhHand;
             this.hit = hit;
+            this.reset = reset;
             this.info = info;
             this.help = help;
             this.stand = stand;
@@ -37,6 +40,9 @@ class GamePanel extends JPanel{
         help.setFocusable(false);
         hit.setBounds(310, 600, 80, 25);
         stand.setBounds(410, 600, 80, 25);
+        info.setBounds(700, 5, 80, 25);
+        help.setBounds(610, 5, 80, 25);
+        reset.setBounds(2, 5, 80, 25);
         info.setBorderPainted(false);
         help.setBorderPainted(false);
         hit.setBorderPainted(false);
@@ -45,21 +51,29 @@ class GamePanel extends JPanel{
         stand.setBackground(Color.WHITE);
         info.setBackground(Color.WHITE);
         help.setBackground(Color.WHITE);
+        
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
 
         super.paintComponent(g);
         Image backgroundImage = new ImageIcon(
-                getClass().getResource("./background/eyestetix-studio-m0EzHtexapU-unsplash.jpg")).getImage();
-        g.drawImage(backgroundImage, 0, 0, 1280, 1000, null);
+            getClass().getResource("./background/eyestetix-studio-m0EzHtexapU-unsplash.jpg")).getImage();
+            g.drawImage(backgroundImage, 0, 0, 1280, 1000, null);
         Image hiddenImage;
+        String dealSum = Integer.toString(dealerHand.getSum());
+        String plyrSum = Integer.toString(playerHand.getSum());
+
+        g.drawString(String.format("Dealer Sum: %s", dealSum), 300, 28);
+        g.drawString(String.format("Player Sum: %s", plyrSum), 300, 360);
         if ((stand.isEnabled())) {
             hiddenImage = new ImageIcon(getClass().getResource("./cards/back_dark.png")).getImage();
         } else {
             hiddenImage = new ImageIcon(getClass().getResource(hiddenCard.path())).getImage();
         }
-        g.drawImage(hiddenImage, 5, 25, cardwidth, cardheight, null);
+        g.drawImage(hiddenImage, 20, 40, cardwidth, cardheight, null);
         for (int i = 0; i < dealerHand.hand.size(); i++) {
             Image card = new ImageIcon(getClass().getResource(dealerHand.hand.get(i).path())).getImage();
-            g.drawImage(card, cardwidth + 10 + (cardwidth + 5) * i, 25, cardwidth, cardheight, null);
+            g.drawImage(card, cardwidth + 25 + (cardwidth + 5) * i, 40, cardwidth, cardheight, null);
         }
 
         for (int i = 0; i < playerHand.hand.size(); i++) {
@@ -67,6 +81,7 @@ class GamePanel extends JPanel{
             g.drawImage(card, 20 + (cardwidth + 5) * i, 400, cardwidth, cardheight, null);
         }
 
+        
     }
 }
 
