@@ -12,8 +12,8 @@ import javax.swing.SwingUtilities;
 
 public class BlackJack extends JFrame implements ActionListener {
     Deck deck;
-    Hand dealerHand = new Hand();
-    Hand playerHand = new Hand();
+    Hand dealerHand;
+    Hand playerHand;
     JButton hit = new JButton("HIT");
     JButton stand = new JButton("STAND");
     JButton help = new JButton("HELP");
@@ -31,8 +31,12 @@ public class BlackJack extends JFrame implements ActionListener {
         hit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Card card = deck.getCard();
+                playerHand.aceCount += card.cardIsAce() ? 1 : 0;
                 playerHand.updateSum(card);
                 playerHand.addCard(card);
+                if(playerCountWithAce() > 21){
+                    hit.setEnabled(false);
+                }
                 cardDraw();
                 panel.repaint();
             }
@@ -44,6 +48,7 @@ public class BlackJack extends JFrame implements ActionListener {
                 stand.setEnabled(false);
                 hit.setEnabled(false);
                 Card card = deck.getCard();
+                dealerHand.aceCount += card.cardIsAce() ? 1 : 0;
                 while (dealerHand.sum < 17) {
                     dealerHand.updateSum(card);
                     dealerHand.addCard(card);
@@ -77,20 +82,25 @@ public class BlackJack extends JFrame implements ActionListener {
             }
         });
 
+        
+
     }
 
     public void startGame() {
         cardDraw();
+        dealerHand = new Hand();
+        playerHand = new Hand();
         deck = new Deck();
         this.hiddenCard = deck.getCard();
-        this.dealerHand.clear();
-        this.playerHand.clear();
 
         Card card;
-
-
         // Card on hand.
+
         card = deck.getCard();
+        dealerHand.aceCount += this.hiddenCard.cardIsAce() ? 1 : 0;
+        dealerHand.aceCount += card.cardIsAce() ? 1 : 0;
+
+        System.out.println(dealerHand.aceCount);
         dealerHand.updateSum(card); // updates the sum of the dealer's cards
         dealerHand.addCard(card); // adds the card to the dealer's hand
         System.out.println("Dealer Hand: " + dealerHand.showHand());
@@ -99,6 +109,7 @@ public class BlackJack extends JFrame implements ActionListener {
         // Player Hand.
         for (int i = 0; i < 2; i++) {
             card = deck.getCard();
+            playerHand.aceCount += card.cardIsAce() ? 1 : 0;
             playerHand.updateSum(card);
             playerHand.addCard(card);
         }
@@ -146,6 +157,24 @@ public class BlackJack extends JFrame implements ActionListener {
         panel.add(stand);
         panel.add(help);
         panel.add(info);
+    }
+
+    public int playerCountWithAce(){
+        while(playerHand.sum > 21 && playerHand.aceCount > 0){
+            playerHand.sum = playerHand.sum - 10;
+            playerHand.aceCount -= 1;
+            playerHand.sumWithAce = playerHand.sum;
+        }
+        return playerHand.sum;
+    }
+
+    public int dealerCountWithAce(){
+        while(dealerHand.sum > 21 && dealerHand.aceCount > 0){
+            dealerHand.sum = dealerHand.sum - 10;
+            dealerHand.aceCount -= 1;
+            dealerHand.sumWithAce = dealerHand.sum;
+        }
+        return dealerHand.sum;
     }
 
 }

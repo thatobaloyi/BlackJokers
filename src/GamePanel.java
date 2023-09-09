@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-class GamePanel extends JPanel{
+class GamePanel extends JPanel {
     final int cardwidth = 121;
     final int cardheight = 170;
 
@@ -19,18 +19,19 @@ class GamePanel extends JPanel{
     JButton info;
     JButton reset;
     Card hiddenCard;
-    
-    GamePanel(Hand dealerHand, Hand playerhHand, JButton hit, JButton stand,JButton info, JButton help,  Card hiddencard, JButton reset){
-            this.dealerHand = dealerHand;
-            this.playerHand = playerhHand;
-            this.hit = hit;
-            this.reset = reset;
-            this.info = info;
-            this.help = help;
-            this.stand = stand;
-            this.hiddenCard = hiddencard;
-            this.setSize(800, 700);
-        }
+
+    GamePanel(Hand dealerHand, Hand playerhHand, JButton hit, JButton stand, JButton info, JButton help,
+            Card hiddencard, JButton reset) {
+        this.dealerHand = dealerHand;
+        this.playerHand = playerhHand;
+        this.hit = hit;
+        this.reset = reset;
+        this.info = info;
+        this.help = help;
+        this.stand = stand;
+        this.hiddenCard = hiddencard;
+        this.setSize(800, 700);
+    }
 
     @Override
     public void paintComponent(Graphics g) {
@@ -51,20 +52,28 @@ class GamePanel extends JPanel{
         stand.setBackground(Color.WHITE);
         info.setBackground(Color.WHITE);
         help.setBackground(Color.WHITE);
-        
+
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
+        g.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 
         super.paintComponent(g);
         Image backgroundImage = new ImageIcon(
-            getClass().getResource("./background/eyestetix-studio-m0EzHtexapU-unsplash.jpg")).getImage();
-            g.drawImage(backgroundImage, 0, 0, 1280, 1000, null);
+                getClass().getResource("./background/eyestetix-studio-m0EzHtexapU-unsplash.jpg")).getImage();
+        g.drawImage(backgroundImage, 0, 0, 1280, 1000, null);
         Image hiddenImage;
         String dealSum = Integer.toString(dealerHand.getSum());
         String plyrSum = Integer.toString(playerHand.getSum());
+        String plyrSumAce = Integer.toString(playerHand.sumWithAce);
 
-        g.drawString(String.format("Dealer Sum: %s", dealSum), 300, 28);
-        g.drawString(String.format("Player Sum: %s", plyrSum), 300, 360);
+        g.drawString(String.format("Dealer Sum: %s", dealSum), 330, 28);
+
+        if (playerHand.sumWithAce > 0) {
+            g.drawString(String.format("Player Sum: %s/%s", plyrSum, plyrSumAce), 330, 360);
+
+        } else {
+            g.drawString(String.format("Player Sum: %s", plyrSum), 330, 360);
+        }
+
         if ((stand.isEnabled())) {
             hiddenImage = new ImageIcon(getClass().getResource("./cards/back_dark.png")).getImage();
         } else {
@@ -81,7 +90,5 @@ class GamePanel extends JPanel{
             g.drawImage(card, 20 + (cardwidth + 5) * i, 400, cardwidth, cardheight, null);
         }
 
-        
     }
 }
-

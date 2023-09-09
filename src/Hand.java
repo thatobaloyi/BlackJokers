@@ -4,6 +4,13 @@ public class Hand {
     ArrayList<Card> hand = new ArrayList<>(); // class arraylist, accessible to all the methods in the class
     int sum = 0;
     int aceCount = 0;
+    int sumWithAce = 0;
+
+    Hand(){
+        this.sum = 0;
+        this.aceCount = 0;
+        this.sumWithAce = 0;
+    }
 
     public void addCard(Card card) {
         hand.add(card); // adds the card to the hands array list.
@@ -29,5 +36,9 @@ public class Hand {
         this.sum = 0;
         this.aceCount = 0;
         hand.clear();
+    }
+
+    public int getAceSum(){
+        return this.sumWithAce;
     }
 }
