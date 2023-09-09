@@ -29,8 +29,6 @@ To play the game using the compiled `.class` files, follow these steps:
      java App
      ```
 
-Hello
-
 ## Project Structure
 The project is organized as a Java project and follows the standard Java project structure:
 
