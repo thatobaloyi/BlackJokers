@@ -7,7 +7,7 @@
 - Milani Tetani
 
 **Mentor:** Sinenjabulo Gogwana
---=
+
 ## Project Description
 This is a Java-based Blackjack game with a graphical user interface (GUI). It utilizes Object-Oriented Programming (OOP) concepts, ArrayLists, Stacks, and custom classes (Hand, Deck, BlackJack, and Card) with custom methods.
 
