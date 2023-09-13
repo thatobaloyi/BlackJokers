@@ -49,7 +49,7 @@ public class BlackJack extends JFrame implements ActionListener {
                 hit.setEnabled(false);
                 Card card = deck.getCard();
                 dealerHand.aceCount += card.cardIsAce() ? 1 : 0;
-                while (dealerHand.sum < 17) {
+                while (dealerHand.getSum() < 17) {
                     dealerHand.updateSum(card);
                     dealerHand.addCard(card);
                 }

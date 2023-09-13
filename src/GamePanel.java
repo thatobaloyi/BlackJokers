@@ -63,11 +63,11 @@ class GamePanel extends JPanel {
         Image hiddenImage;
         String dealSum = Integer.toString(dealerHand.getSum());
         String plyrSum = Integer.toString(playerHand.getSum());
-        String plyrSumAce = Integer.toString(playerHand.sumWithAce);
+        String plyrSumAce = Integer.toString(playerHand.getAceSum());
 
         g.drawString(String.format("Dealer Sum: %s", dealSum), 330, 28);
 
-        if (playerHand.sumWithAce > 0) {
+        if (playerHand.getAceSum() > 0) {
             g.drawString(String.format("Player Sum: %s/%s", plyrSum, plyrSumAce), 330, 360);
 
         } else {

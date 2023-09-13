@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.Stack;
 
 public class Deck {
-    Stack<Card> deck = new Stack<>(); // class Stack, accessible to all the methods in the class
+    private Stack<Card> deck = new Stack<>(); // class Stack, accessible to all the methods in the class
 
     Deck() {
         buildDeck(deck);
