@@ -137,7 +137,7 @@ public class BlackJack extends JFrame implements ActionListener {
             this.remove(panel);
             startGame();
             gameFrameSetup();
-            SwingUtilities.updateComponentTreeUI(this);
+            //SwingUtilities.updateComponentTreeUI(this);
 
         }
     }
