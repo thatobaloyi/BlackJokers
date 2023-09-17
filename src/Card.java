@@ -1,6 +1,6 @@
 public class Card {
-    String value;
-    String sign;
+    private String value;
+    private String sign;
 
     Card(String sign, String value) { // constructor method for card
         this.value = value;

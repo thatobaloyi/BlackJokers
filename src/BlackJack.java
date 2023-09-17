@@ -8,8 +8,8 @@ import javax.sound.sampled.Clip;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
+@SuppressWarnings("unused")
 public class BlackJack extends JFrame implements ActionListener {
     Deck deck;
     Hand dealerHand;
@@ -34,7 +34,7 @@ public class BlackJack extends JFrame implements ActionListener {
                 playerHand.aceCount += card.cardIsAce() ? 1 : 0;
                 playerHand.updateSum(card);
                 playerHand.addCard(card);
-                if(playerCountWithAce() > 21){
+                if (playerCountWithAce() > 21) {
                     hit.setEnabled(false);
                 }
                 cardDraw();
@@ -82,11 +82,9 @@ public class BlackJack extends JFrame implements ActionListener {
             }
         });
 
-        
-
     }
 
-    public void startGame() {
+    private void startGame() {
         cardDraw();
         dealerHand = new Hand();
         playerHand = new Hand();
@@ -118,7 +116,7 @@ public class BlackJack extends JFrame implements ActionListener {
 
     }
 
-    public void cardDraw() {
+    private void cardDraw() {
         try {
             File sound = new File("./sound/sounds_card.wav");
             AudioInputStream audio = AudioSystem.getAudioInputStream(sound);
@@ -137,12 +135,12 @@ public class BlackJack extends JFrame implements ActionListener {
             this.remove(panel);
             startGame();
             gameFrameSetup();
-            //SwingUtilities.updateComponentTreeUI(this);
+            // SwingUtilities.updateComponentTreeUI(this);
 
         }
     }
 
-    public void gameFrameSetup() { // sets up the frame.
+    private void gameFrameSetup() { // sets up the frame.
         panel = new GamePanel(dealerHand, playerHand, hit, stand, info, help, hiddenCard, reset);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(800, 700);
@@ -159,8 +157,8 @@ public class BlackJack extends JFrame implements ActionListener {
         panel.add(info);
     }
 
-    public int playerCountWithAce(){
-        while(playerHand.sum > 21 && playerHand.aceCount > 0){
+    private int playerCountWithAce() {
+        while (playerHand.sum > 21 && playerHand.aceCount > 0) {
             playerHand.sum = playerHand.sum - 10;
             playerHand.aceCount -= 1;
             playerHand.sumWithAce = playerHand.sum;
@@ -168,8 +166,8 @@ public class BlackJack extends JFrame implements ActionListener {
         return playerHand.sum;
     }
 
-    public int dealerCountWithAce(){
-        while(dealerHand.sum > 21 && dealerHand.aceCount > 0){
+    private int dealerCountWithAce() {
+        while (dealerHand.sum > 21 && dealerHand.aceCount > 0) {
             dealerHand.sum = dealerHand.sum - 10;
             dealerHand.aceCount -= 1;
             dealerHand.sumWithAce = dealerHand.sum;

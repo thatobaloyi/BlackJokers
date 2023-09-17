@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Hand {
-    ArrayList<Card> hand = new ArrayList<>(); // class arraylist, accessible to all the methods in the class
+    private ArrayList<Card> hand = new ArrayList<>(); // class arraylist, accessible to all the methods in the class
     int sum = 0;
     int aceCount = 0;
     int sumWithAce = 0;
