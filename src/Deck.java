@@ -10,7 +10,7 @@ public class Deck {
         shuffleDeck(deck);
     }
 
-    public static void buildDeck(Stack<Card> deck) {
+    private static void buildDeck(Stack<Card> deck) {
         String[] signs = { "spades", "hearts", "clubs", "diamonds" };
         String[] values = { "2", "3", "4", "5", "6", "7", "8", "9", "A", "J", "Q", "K" };
         for (int i = 0; i < signs.length; i++) {
@@ -22,7 +22,7 @@ public class Deck {
         // System.out.println(deck); // prints the created deck.
     }
 
-    public static void shuffleDeck(Stack<Card> deck) { // shuffles our deck of cards
+    private static void shuffleDeck(Stack<Card> deck) { // shuffles our deck of cards
         // I am using fisher - yates since it uses a for loop to shuffle once O(n),
         // unlike riffle shuffle where I have to create more arrays
         Random random = new Random();

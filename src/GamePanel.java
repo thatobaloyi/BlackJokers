@@ -80,13 +80,13 @@ class GamePanel extends JPanel {
             hiddenImage = new ImageIcon(getClass().getResource(hiddenCard.path())).getImage();
         }
         g.drawImage(hiddenImage, 20, 40, cardwidth, cardheight, null);
-        for (int i = 0; i < dealerHand.hand.size(); i++) {
-            Image card = new ImageIcon(getClass().getResource(dealerHand.hand.get(i).path())).getImage();
+        for (int i = 0; i < dealerHand.showHand().size(); i++) {
+            Image card = new ImageIcon(getClass().getResource(dealerHand.showHand().get(i).path())).getImage();
             g.drawImage(card, cardwidth + 25 + (cardwidth + 5) * i, 40, cardwidth, cardheight, null);
         }
 
-        for (int i = 0; i < playerHand.hand.size(); i++) {
-            Image card = new ImageIcon(getClass().getResource(playerHand.hand.get(i).path())).getImage();
+        for (int i = 0; i < playerHand.showHand().size(); i++) {
+            Image card = new ImageIcon(getClass().getResource(playerHand.showHand().get(i).path())).getImage();
             g.drawImage(card, 20 + (cardwidth + 5) * i, 400, cardwidth, cardheight, null);
         }
 
