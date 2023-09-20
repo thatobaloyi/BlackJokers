@@ -21,6 +21,8 @@ public class BlackJack extends JFrame implements ActionListener {
     JButton reset = new JButton("RESET");
     Card hiddenCard;
     GamePanel panel;
+    GamePanel checking;
+    GamePanel forFun;
 
     BlackJack() {
         startGame(); // calls the start game method.
