@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -38,9 +39,14 @@ public class BlackJack extends JFrame implements ActionListener {
                 playerHand.addCard(card);
                 if (playerCountWithAce() > 21) {
                     hit.setEnabled(false);
+                    stand.setEnabled(false);
+                    panel.repaint();
+                    JOptionPane.showMessageDialog(panel,
+                            "You Have Bursted",
+                            "GUIDE", JOptionPane.INFORMATION_MESSAGE);
                 }
-                cardDraw();
                 panel.repaint();
+                cardDraw();
             }
         });
 
@@ -49,9 +55,9 @@ public class BlackJack extends JFrame implements ActionListener {
                 dealerHand.updateSum(hiddenCard);
                 stand.setEnabled(false);
                 hit.setEnabled(false);
-                Card card = deck.getCard();
-                dealerHand.aceCount += card.cardIsAce() ? 1 : 0;
-                while (dealerHand.getSum() < 17) {
+                while (dealerCountWithAce() < 17) {
+                    Card card = deck.getCard();
+                    dealerHand.aceCount += card.cardIsAce() ? 1 : 0;
                     dealerHand.updateSum(card);
                     dealerHand.addCard(card);
                 }
@@ -144,6 +150,7 @@ public class BlackJack extends JFrame implements ActionListener {
 
     private void gameFrameSetup() { // sets up the frame.
         panel = new GamePanel(dealerHand, playerHand, hit, stand, info, help, hiddenCard, reset);
+        GamePanel bet = new GamePanel(dealerHand, playerHand, hit, stand, info, help, hiddenCard, reset);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(800, 700);
         this.setLocationRelativeTo(null);
@@ -157,6 +164,8 @@ public class BlackJack extends JFrame implements ActionListener {
         panel.add(stand);
         panel.add(help);
         panel.add(info);
+        bet.setBackground(Color.BLUE);
+        this.add(bet);
     }
 
     private int playerCountWithAce() {
