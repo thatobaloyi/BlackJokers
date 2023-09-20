@@ -23,7 +23,7 @@ public class BlackJack extends JFrame implements ActionListener {
     GamePanel panel;
 
     BlackJack() {
-        startGame(); // calls the start game method
+        startGame(); // calls the start game method.
         gameFrameSetup(); // calls the game Frame setup method.
 
         reset.addActionListener(this);
