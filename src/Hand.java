@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class Hand {
     private ArrayList<Card> hand = new ArrayList<>(); // class arraylist, accessible to all the methods in the class
-    int sum = 0;
-    int aceCount = 0;
-    int sumWithAce = 0;
+    int sum;
+    int aceCount;
+    int sumWithAce;
 
     Hand(){
         this.sum = 0;
