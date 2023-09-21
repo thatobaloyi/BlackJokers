@@ -100,7 +100,7 @@ public class BlackJack extends JFrame implements ActionListener {
         this.hiddenCard = deck.getCard();
 
         Card card;
-        // Card on hand.
+        // Card on hand.............
 
         card = deck.getCard();
         dealerHand.aceCount += this.hiddenCard.cardIsAce() ? 1 : 0;
