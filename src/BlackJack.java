@@ -165,7 +165,7 @@ public class BlackJack extends JFrame implements ActionListener {
         panel.add(help);
         panel.add(info);
         bet.setBackground(Color.BLUE);
-        this.add(bet);
+        //this.add(bet);
     }
 
     private int playerCountWithAce() {
