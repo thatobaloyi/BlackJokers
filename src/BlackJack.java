@@ -43,7 +43,7 @@ public class BlackJack extends JFrame implements ActionListener {
                     panel.repaint();
                     JOptionPane.showMessageDialog(panel,
                             "You Have Bursted",
-                            "GUIDE", JOptionPane.INFORMATION_MESSAGE);
+                            "Alert", JOptionPane.PLAIN_MESSAGE);
                 }
                 panel.repaint();
                 cardDraw();
