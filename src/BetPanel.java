@@ -26,14 +26,4 @@ public class BetPanel extends JPanel {
             }
         });
     }
-
-    public static void main(String[] args){
-        BetPanel panelo = new BetPanel();
-        JFrame wow = new JFrame();
-
-        wow.setSize(800,800);
-        wow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        wow.setVisible(true);
-        wow.add(panelo);
-    }
 }
