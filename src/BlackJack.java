@@ -150,7 +150,6 @@ public class BlackJack extends JFrame implements ActionListener {
 
     private void gameFrameSetup() { // sets up the frame.
         panel = new GamePanel(dealerHand, playerHand, hit, stand, info, help, hiddenCard, reset);
-        GamePanel bet = new GamePanel(dealerHand, playerHand, hit, stand, info, help, hiddenCard, reset);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(800, 700);
         this.setLocationRelativeTo(null);
@@ -165,7 +164,6 @@ public class BlackJack extends JFrame implements ActionListener {
         panel.add(help);
         panel.add(info);
         bet.setBackground(Color.BLUE);
-        //this.add(bet);
     }
 
     private int playerCountWithAce() {
