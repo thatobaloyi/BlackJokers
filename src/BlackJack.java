@@ -22,9 +22,7 @@ public class BlackJack extends JFrame implements ActionListener {
     JButton reset = new JButton("RESET");
     Card hiddenCard;
     GamePanel panel;
-    GamePanel checking;
-    GamePanel forFun;
-
+    BetPanel betPanel;
     BlackJack() {
         startGame(); // calls the start game method.
         gameFrameSetup(); // calls the game Frame setup method.
@@ -163,7 +161,6 @@ public class BlackJack extends JFrame implements ActionListener {
         panel.add(stand);
         panel.add(help);
         panel.add(info);
-        bet.setBackground(Color.BLUE);
     }
 
     private int playerCountWithAce() {
