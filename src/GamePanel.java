@@ -8,20 +8,21 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 class GamePanel extends JPanel {
-    final int cardwidth = 121;
-    final int cardheight = 170;
+    final int cardwidth = 121;  // Width of a card image
+    final int cardheight = 170; // Height of a card image
 
-    Hand dealerHand;
-    Hand playerHand;
-    JButton hit;
-    JButton stand;
-    JButton help;
-    JButton info;
-    JButton reset;
-    Card hiddenCard;
+    Hand dealerHand;                // Reference to the dealer's hand
+    Hand playerHand;                // Reference to the player's hand
+    JButton hit;                    // Button for the player to request another card
+    JButton stand;                  // Button for the player to stop requesting cards
+    JButton help;                   // Button to display game rules/help
+    JButton info;                   // Button to display information about the project/team
+    JButton reset;                  // Button to reset the game
+    Card hiddenCard;                // Reference to the hidden card of the dealer
 
     GamePanel(Hand dealerHand, Hand playerhHand, JButton hit, JButton stand, JButton info, JButton help,
             Card hiddencard, JButton reset) {
+        // Assigns the provided parameters to the corresponding instance variables
         this.dealerHand = dealerHand;
         this.playerHand = playerhHand;
         this.hit = hit;
@@ -30,11 +31,13 @@ class GamePanel extends JPanel {
         this.help = help;
         this.stand = stand;
         this.hiddenCard = hiddencard;
-        this.setSize(800, 700);
-    }
+        this.setSize(800, 700); // Also sets the size of the panel to 800x700
+    } // Constructor for the GamePanel class
 
+    // Overrides the paintComponent method of JPanel for custom rendering
     @Override
     public void paintComponent(Graphics g) {
+        // Disables focus for buttons and sets their positions and sizes
         hit.setFocusable(false);
         stand.setFocusable(false);
         info.setFocusable(false);
@@ -44,19 +47,25 @@ class GamePanel extends JPanel {
         info.setBounds(700, 5, 80, 25);
         help.setBounds(610, 5, 80, 25);
         reset.setBounds(2, 5, 80, 25);
+
+        // Configures button appearance (background color, border)
         info.setBorderPainted(false);
         help.setBorderPainted(false);
         hit.setBorderPainted(false);
         stand.setBorderPainted(false);
+        
         hit.setBackground(Color.WHITE);
         stand.setBackground(Color.WHITE);
         info.setBackground(Color.WHITE);
         help.setBackground(Color.WHITE);
 
+        // Configures font and color for text rendering
         g.setColor(Color.WHITE);
         g.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 
+        // Calls the superclass paintComponent method to ensure proper rendering
         super.paintComponent(g);
+        // Loads a background image and renders it on the panel
         Image backgroundImage = new ImageIcon(
                 getClass().getResource("./background/eyestetix-studio-m0EzHtexapU-unsplash.jpg")).getImage();
         g.drawImage(backgroundImage, 0, 0, 1280, 1000, null);
@@ -64,6 +73,10 @@ class GamePanel extends JPanel {
         String dealSum = Integer.toString(dealerHand.getSum());
         String plyrSum = Integer.toString(playerHand.getSum());
         String plyrSumAce = Integer.toString(playerHand.getAceSum());
+
+          // Renders dealer's and player's hands along with their total sums
+         // Determines the image of the hidden card (face down or face up based on the game state)
+         // Renders the hidden card or the actual hidden card of the dealer
 
         g.drawString(String.format("Dealer Sum: %s", dealSum), 330, 28);
 
@@ -80,12 +93,16 @@ class GamePanel extends JPanel {
             hiddenImage = new ImageIcon(getClass().getResource(hiddenCard.path())).getImage();
         }
         g.drawImage(hiddenImage, 20, 40, cardwidth, cardheight, null);
+              // Renders cards of the dealer's hand
         for (int i = 0; i < dealerHand.showHand().size(); i++) {
+            // Loads card images and renders them in the appropriate positions
             Image card = new ImageIcon(getClass().getResource(dealerHand.showHand().get(i).path())).getImage();
             g.drawImage(card, cardwidth + 25 + (cardwidth + 5) * i, 40, cardwidth, cardheight, null);
         }
 
+        // Renders cards of the player's hand
         for (int i = 0; i < playerHand.showHand().size(); i++) {
+            // Loads card images and renders them in the appropriate positions
             Image card = new ImageIcon(getClass().getResource(playerHand.showHand().get(i).path())).getImage();
             g.drawImage(card, 20 + (cardwidth + 5) * i, 400, cardwidth, cardheight, null);
         }
