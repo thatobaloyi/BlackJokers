@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+@SuppressWarnings("unused")
 public class BetPanel extends JPanel {
     private JTextField betAmountField;       //to enter the bet amount
     private JButton placeBetButton;         //button to place the bet
