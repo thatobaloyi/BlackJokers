@@ -40,9 +40,10 @@ The project is organized as a Java project and follows the standard Java project
 - The GUI represents the Blackjack table.
 - Click "Hit" to take another card.
 - Click "Stand" to end your turn.
-- Click "Double Down" to double your bet and draw one more card.
-- Click "Quit" to exit the game.
-  
+- When you run the game, an input dialog will appear for the player to enter the bet amount.
+- The initial balance for the player is $500.
+- We have added the bet function so that players can practice and get familiar with how the bet system of Blackjack works.
+
 ## Game Rules
 - The program enforces Blackjack rules, including card values and win/lose conditions.
 - The goal is to beat the dealer's hand without going over 21.
