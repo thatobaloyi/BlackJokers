@@ -240,7 +240,7 @@ public class BlackJack extends JFrame {
         // Adds the game panel and buttons to the frame for display
 
         panel = new GamePanel(dealerHand, playerHand, hit, stand, info, help, hiddenCard, bet);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setSize(800, 700);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
