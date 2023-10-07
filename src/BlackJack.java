@@ -151,7 +151,18 @@ public class BlackJack extends JFrame {
                 gameFrameSetup();
                 break;
             case 1:
-                System.exit(0);
+                ImageIcon icon = new ImageIcon("./icons/sad.png");
+                int res = JOptionPane.showOptionDialog(panel, "Are sure you want to Quit the game?", "Quit?",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, icon, null, 0 );
+                switch(res){
+                    case 0:
+                    System.exit(0);
+                    break;
+                    case 1:
+                        this.remove(panel);
+                        startGame();
+                        gameFrameSetup();
+                        break;
+                }
 
         }
 
