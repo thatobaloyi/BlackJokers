@@ -17,16 +17,16 @@ class GamePanel extends JPanel {
     JButton stand;                  // Button for the player to stop requesting cards
     JButton help;                   // Button to display game rules/help
     JButton info;                   // Button to display information about the project/team
-    JButton reset;                  // Button to reset the game
     Card hiddenCard;                // Reference to the hidden card of the dealer
+    PlayerBet bet;
 
     GamePanel(Hand dealerHand, Hand playerhHand, JButton hit, JButton stand, JButton info, JButton help,
-            Card hiddencard, JButton reset) {
+            Card hiddencard, PlayerBet bet) {
         // Assigns the provided parameters to the corresponding instance variables
+        this.bet = bet;
         this.dealerHand = dealerHand;
         this.playerHand = playerhHand;
         this.hit = hit;
-        this.reset = reset;
         this.info = info;
         this.help = help;
         this.stand = stand;
@@ -46,7 +46,6 @@ class GamePanel extends JPanel {
         stand.setBounds(410, 600, 80, 25);
         info.setBounds(700, 5, 80, 25);
         help.setBounds(610, 5, 80, 25);
-        reset.setBounds(2, 5, 80, 25);
 
         // Configures button appearance (background color, border)
         info.setBorderPainted(false);
@@ -73,12 +72,17 @@ class GamePanel extends JPanel {
         String dealSum = Integer.toString(dealerHand.getSum());
         String plyrSum = Integer.toString(playerHand.getSum());
         String plyrSumAce = Integer.toString(playerHand.getAceSum());
+        String balance = Integer.toString(bet.getBalance());
+        String betAmount = Integer.toString(bet.getBet());
 
           // Renders dealer's and player's hands along with their total sums
          // Determines the image of the hidden card (face down or face up based on the game state)
          // Renders the hidden card or the actual hidden card of the dealer
 
         g.drawString(String.format("Dealer Sum: %s", dealSum), 330, 28);
+
+        g.drawString(String.format("Balance: $%s", balance), 10, 600);
+        g.drawString(String.format("BetAmount: $%s", betAmount), 10, 630);
 
         if (playerHand.getAceSum() > 0) {
             g.drawString(String.format("Player Sum: %s/%s", plyrSum, plyrSumAce), 330, 360);
