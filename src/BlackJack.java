@@ -174,8 +174,16 @@ public class BlackJack extends JFrame {
         // Prints the dealer's hand and the player's hand to the console (for debugging
         // purposes)
         try{
-            this.betAmount = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter your bet amount", "Bet Amount",
-                    JOptionPane.INFORMATION_MESSAGE, betIcon, null, "").toString());
+            while(true){
+                this.betAmount = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter your bet amount", "Bet Amount",
+                        JOptionPane.INFORMATION_MESSAGE, betIcon, null, "").toString());
+                if(this.betAmount > bet.getBalance()){
+                    JOptionPane.showMessageDialog(panel, "Insufficient funds!, Your bet amount cannot be more than your balance.", "Error", JOptionPane.ERROR_MESSAGE);
+                    continue;
+                }else{
+                    break;
+                }
+            }
         }catch(Exception e){
             JOptionPane.showMessageDialog(panel, "Your Bet Amount Should Be A Number", "Error", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
